@@ -1,4 +1,7 @@
-from sqlalchemy import TIMESTAMP, Column, Integer, Numeric, func
+from datetime import datetime
+
+from sqlalchemy import DateTime, Integer, Numeric
+from sqlalchemy.orm import Mapped, mapped_column
 
 from db.base import Base
 
@@ -6,6 +9,10 @@ from db.base import Base
 class CalcResult(Base):
     __tablename__ = "calc_results"
 
-    id = Column(Integer, primary_key=True)
-    total_cost_rub = Column(Numeric, nullable=False)
-    created_at = Column(TIMESTAMP, server_default=func.now(), nullable=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    total_cost_rub: Mapped[float] = mapped_column(Numeric, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow,
+        nullable=False,
+    )

@@ -1,12 +1,17 @@
-from decimal import Decimal
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from schemas.calc import CalcRequest
+from db.models import CalcResult
+from schemas.calc import Material
 
 
-def calculate_total_cost(data: CalcRequest) -> Decimal:
-    total = Decimal("0")
+def calculate_total_cost(materials: list[Material]) -> float:
+    return sum(m.qty * m.price_rub for m in materials)
 
-    for material in data.materials:
-        total += Decimal(str(material.qty)) * Decimal(str(material.price_rub))
 
-    return total
+async def save_calc_result(
+    db: AsyncSession,
+    total_cost: float,
+) -> None:
+    result = CalcResult(total_cost_rub=total_cost)
+    db.add(result)
+    await db.commit()
