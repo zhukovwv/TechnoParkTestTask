@@ -98,4 +98,11 @@ docker-compose up --build
 # 3. Проверьте работу
 curl http://localhost:8000/health
 ```
+##  SQL-запрос, который возвращает 10 последних расчётов отсортированных по дате
+```sql
+SELECT id, total_cost_rub, created_at
+FROM calc_results
+ORDER BY created_at DESC
+LIMIT 10;
+```
 
