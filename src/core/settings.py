@@ -27,6 +27,10 @@ class Settings(BaseSettings):
     PG_USER: str = Field(...)
     PG_PASSWORD: str = Field(...)
 
+    # --- Logging ---
+    LOG_ENABLED: bool = Field(default=True)
+    LOG_LEVEL: str = Field(default="INFO")
+
     @property
     def pg_url(self) -> str:
         return (
