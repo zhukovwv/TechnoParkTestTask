@@ -12,7 +12,7 @@ class CalcResult(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     total_cost_rub: Mapped[float] = mapped_column(Numeric, nullable=False)
     created_at: Mapped[datetime] = mapped_column(
-        DateTime,
+        DateTime(timezone=True),
         default=lambda: datetime.now(timezone.utc),
         nullable=False,
     )
