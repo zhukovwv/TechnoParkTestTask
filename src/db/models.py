@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 from sqlalchemy import DateTime, Integer, Numeric
 from sqlalchemy.orm import Mapped, mapped_column
@@ -13,6 +13,6 @@ class CalcResult(Base):
     total_cost_rub: Mapped[float] = mapped_column(Numeric, nullable=False)
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
-        default=datetime.utcnow,
+        default=lambda: datetime.now(timezone.utc),
         nullable=False,
     )
