@@ -1,10 +1,9 @@
-from fastapi import APIRouter, Depends
-from sqlalchemy.ext.asyncio import AsyncSession
 import structlog
-
 from db.session import get_db
+from fastapi import APIRouter, Depends
 from schemas.calc import CalcRequest, CalcResponse
 from services.calculator import calculate_total_cost, save_calc_result
+from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter()
 

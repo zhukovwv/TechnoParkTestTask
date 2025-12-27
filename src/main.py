@@ -1,13 +1,11 @@
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
-
-from core.middleware import log_requests
-from core.logging import setup_logging
-
 from api.calc import router as calc_router
 from api.health import router as health_router
+from core.logging import setup_logging
+from core.middleware import log_requests
 from core.settings import settings
+from fastapi import FastAPI
 
 
 @asynccontextmanager

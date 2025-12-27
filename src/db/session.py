@@ -1,12 +1,11 @@
 from collections.abc import AsyncGenerator
 
+from core.settings import settings
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     async_sessionmaker,
     create_async_engine,
 )
-
-from core.settings import settings
 
 engine = create_async_engine(settings.pg_url, echo=False)
 

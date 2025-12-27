@@ -1,7 +1,6 @@
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from db.models import CalcResult
 from schemas.calc import Material
+from sqlalchemy.ext.asyncio import AsyncSession
 
 
 def calculate_total_cost(materials: list[Material]) -> float:
